@@ -18,6 +18,12 @@ app.get('/', function (req, res) {
   res.render('homepage')
 })
 
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  next()
+})
+
 // 3.3 setting up body-parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
