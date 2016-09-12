@@ -2,7 +2,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 
-var port = 3000
+var port = process.env.PORT || 3000
 
 // 2. INSTANTIATING THE APP
 var app = express()
