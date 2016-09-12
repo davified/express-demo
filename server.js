@@ -15,7 +15,21 @@ app.listen(port, function () {
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
-  res.render('homepage')
+  res.json({
+    0: 'GET    /',
+    1: '-----------------------',
+    2: 'GET    /blogposts',
+    3: 'GET    /blogposts/:id',
+    4: 'POST   /blogposts',
+    5: 'PUT    /blogposts/:id',
+    6: 'DELETE    /blogposts/:id',
+    7: '-----------------------',
+    8: 'GET    /users',
+    9: 'GET    /users/:id',
+    10: 'POST    /users',
+    11: 'PUT    /users/:id',
+    12: 'DELETE    /users/:id'
+  })
 })
 
 app.use(function (req, res, next) {
