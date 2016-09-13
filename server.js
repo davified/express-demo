@@ -113,6 +113,15 @@ app.delete('/users/:username', function (req, res) {
   res.json(users)
 })
 
+app.delete('/blogposts/:id', function (req, res) {
+  for (var i = 0; i < blogposts.length; i++) {
+    if (blogposts[i].id == req.params.id) {
+      blogposts.splice(i, 1)
+    }
+  }
+  res.json(blogposts)
+})
+
 var users = [
   {id: 0, username: 'david-tan', age: 28},
   {id: 1, username: 'tang-wei', age: 50},
