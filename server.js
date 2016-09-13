@@ -1,7 +1,7 @@
 // 1. SETTING UP THE DEPENDENCIES
 var express = require('express')
 var bodyParser = require('body-parser')
-
+var cors = require('cors')
 var port = process.env.PORT || 3000
 
 // 2. INSTANTIATING THE APP
@@ -32,11 +32,7 @@ app.get('/', function (req, res) {
   })
 })
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  next()
-})
+app.use(cors())
 
 // 3.3 setting up body-parser
 app.use(bodyParser.json())
@@ -142,6 +138,7 @@ app.get('/users/:id', function (req, res) {
 })
 
 app.post('/users', function (req, res) {
+  console.log(req)
   console.log(req.body)
   var newUser = {
     id: users.length + 1,
