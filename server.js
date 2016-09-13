@@ -40,6 +40,7 @@ app.use(function (req, res, next) {
 
 // 3.3 setting up body-parser
 app.use(bodyParser.json())
+
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // res.send('whatever'), res.render('ejs-filename'),
@@ -152,5 +153,12 @@ app.post('/users', function (req, res) {
 })
 
 app.post('/blogposts', function (req, res) {
-  // your code here
+  console.log(req.body)
+  var newPost = {
+    id: blogposts.length + 1,
+    body: req.body.body,
+    title: req.body.title
+  }
+  blogposts.push(newPost)
+  res.json(blogposts)
 })
