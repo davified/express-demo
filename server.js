@@ -36,7 +36,6 @@ app.use(cors())
 
 // 3.3 setting up body-parser
 app.use(bodyParser.json())
-
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // res.send('whatever'), res.render('ejs-filename'),
@@ -46,15 +45,15 @@ var blogposts = [
   {
     id: 1,
     title: 'this is my FIRST blogpost',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
   {
     id: 2,
     title: 'this is my SECOND blogpost',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
   {
     id: 3,
     title: 'this is my THIRD blogpost',
-  body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}
+    body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}
 ]
 
 app.get('/blogposts', function (req, res) {
@@ -62,10 +61,10 @@ app.get('/blogposts', function (req, res) {
 })
 
 app.get('/blogposts/:id', function (req, res) {
-  var id = req.params.id
+  var id = parseInt(req.params.id, 10)
   var requestedPost
   for (var i = 0; i < blogposts.length; i++) {
-    if (blogposts[i].id == id) {
+    if (blogposts[i].id === id) {
       requestedPost = blogposts[i]
     }
   }
@@ -74,10 +73,10 @@ app.get('/blogposts/:id', function (req, res) {
 
 app.put('/blogposts/:id', function (req, res) {
   // SAME CODE AS A GET /blogposts/:id REQUEST!
-  var id = req.params.id
+  var id = parseInt(req.params.id, 10)
   var requestedPost
   for (var i = 0; i < blogposts.length; i++) {
-    if (blogposts[i].id == id) {
+    if (blogposts[i].id === id) {
       requestedPost = blogposts[i]
     }
   }
@@ -93,7 +92,7 @@ app.put('/users/:username', function (req, res) {
   // SAME CODE AS A GET /blogposts/:id REQUEST!
   var requestedUser
   for (var i = 0; i < users.length; i++) {
-    if (users[i].username == req.params.username) {
+    if (users[i].username === req.params.username) {
       requestedUser = users[i]
     }
   }
@@ -106,7 +105,7 @@ app.put('/users/:username', function (req, res) {
 
 app.delete('/users/:username', function (req, res) {
   for (var i = 0; i < users.length; i++) {
-    if (users[i].username == req.params.username) {
+    if (users[i].username === req.params.username) {
       users.splice(i, 1)
     }
   }
@@ -114,8 +113,9 @@ app.delete('/users/:username', function (req, res) {
 })
 
 app.delete('/blogposts/:id', function (req, res) {
+  var requestedId = parseInt(req.params.id, 10)
   for (var i = 0; i < blogposts.length; i++) {
-    if (blogposts[i].id == req.params.id) {
+    if (blogposts[i].id === requestedId) {
       blogposts.splice(i, 1)
     }
   }
@@ -136,10 +136,10 @@ app.get('/users', function (req, res) {
 })
 
 app.get('/users/:id', function (req, res) {
-  var id = req.params.id
+  var id = parseInt(req.params.id, 10)
   var requestedUser
   users.forEach(function (element) {
-    if (element.id == id) {
+    if (element.id === id) {
       requestedUser = element
     }
   })
