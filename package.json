@@ -10,10 +10,10 @@
   "author": "david-tan",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "cors": "^2.8.1",
-    "ejs": "^2.5.2",
-    "express": "^4.14.0"
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
   },
   "engines": {
     "node": "^9.3.0"
