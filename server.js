@@ -76,6 +76,20 @@ app.get("/blogposts", function(req, res) {
   res.json(blogposts);
 });
 
+app.post("/blogposts", function(req, res) {
+  console.log(req.body);
+  var newPost = {
+    id: blogposts.length + 1,
+    body: req.body.body,
+    title: req.body.title,
+    author: req.body.author,
+    image_url: req.body.image_url,
+    likes: 0
+  };
+  blogposts.push(newPost);
+  res.json(blogposts);
+});
+
 app.get("/blogposts/:id", function(req, res) {
   var id = parseInt(req.params.id, 10);
   var requestedPost;
@@ -104,6 +118,50 @@ app.put("/blogposts/:id", function(req, res) {
   res.json(blogposts);
 });
 
+app.delete("/blogposts/:id", function(req, res) {
+  var requestedId = parseInt(req.params.id, 10);
+  for (var i = 0; i < blogposts.length; i++) {
+    if (blogposts[i].id === requestedId) {
+      blogposts.splice(i, 1);
+    }
+  }
+  res.json(blogposts);
+});
+
+var users = [
+  { id: 0, username: "david-tan", age: 28 },
+  { id: 1, username: "tang-wei", age: 50 },
+  { id: 2, username: "jonathan", age: 90 },
+  { id: 3, username: "yvonne", age: 20 }
+];
+
+app.get("/users", function(req, res) {
+  res.json(users);
+});
+
+app.post("/users", function(req, res) {
+  console.log(req);
+  console.log(req.body);
+  var newUser = {
+    id: users.length + 1,
+    username: req.body.username,
+    age: req.body.age
+  };
+  users.push(newUser);
+  res.json(users);
+});
+
+app.get("/users/:id", function(req, res) {
+  var id = parseInt(req.params.id, 10);
+  var requestedUser;
+  users.forEach(function(element) {
+    if (element.id === id) {
+      requestedUser = element;
+    }
+  });
+  res.json(requestedUser);
+});
+
 app.put("/users/:username", function(req, res) {
   // SAME CODE AS A GET /blogposts/:id REQUEST!
   var requestedUser;
@@ -126,62 +184,4 @@ app.delete("/users/:username", function(req, res) {
     }
   }
   res.json(users);
-});
-
-app.delete("/blogposts/:id", function(req, res) {
-  var requestedId = parseInt(req.params.id, 10);
-  for (var i = 0; i < blogposts.length; i++) {
-    if (blogposts[i].id === requestedId) {
-      blogposts.splice(i, 1);
-    }
-  }
-  res.json(blogposts);
-});
-
-var users = [
-  { id: 0, username: "david-tan", age: 28 },
-  { id: 1, username: "tang-wei", age: 50 },
-  { id: 2, username: "jonathan", age: 90 },
-  { id: 3, username: "yvonne", age: 20 }
-];
-
-app.get("/users", function(req, res) {
-  res.json(users);
-});
-
-app.get("/users/:id", function(req, res) {
-  var id = parseInt(req.params.id, 10);
-  var requestedUser;
-  users.forEach(function(element) {
-    if (element.id === id) {
-      requestedUser = element;
-    }
-  });
-  res.json(requestedUser);
-});
-
-app.post("/users", function(req, res) {
-  console.log(req);
-  console.log(req.body);
-  var newUser = {
-    id: users.length + 1,
-    username: req.body.username,
-    age: req.body.age
-  };
-  users.push(newUser);
-  res.json(users);
-});
-
-app.post("/blogposts", function(req, res) {
-  console.log(req.body);
-  var newPost = {
-    id: blogposts.length + 1,
-    body: req.body.body,
-    title: req.body.title,
-    author: req.body.author,
-    image_url: req.body.image_url,
-    likes: 0
-  };
-  blogposts.push(newPost);
-  res.json(blogposts);
 });
