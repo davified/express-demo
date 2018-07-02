@@ -44,7 +44,7 @@ app.post("/blogposts", function(req, res) {
     image_url: req.body.image_url,
     likes: 0
   };
-  blogposts.push(newPost);
+  blogposts = [...blogposts, newPost];
   res.json(blogposts);
 });
 
@@ -97,19 +97,12 @@ app.get("/users/:id", function(req, res) {
   res.json(requestedUser);
 });
 
-app.put("/users/:username", function(req, res) {
-  // SAME CODE AS A GET /blogposts/:id REQUEST!
-  let requestedUser;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].username === req.params.username) {
-      requestedUser = users[i];
-    }
-  }
+app.put("/users/:id", function(req, res) {
+  const id = parseInt(req.params.id, 10);
+  const requestedUser = users.find(user => user.id === id);
+  const updatedUser = Object.assign(requestedUser, req.body);
 
-  requestedUser.username = req.body.username;
-  requestedUser.age = req.body.age;
-
-  res.json(requestedUser);
+  res.json(updatedUser);
 });
 
 app.delete("/users/:username", function(req, res) {
