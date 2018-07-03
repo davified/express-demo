@@ -50,7 +50,7 @@ app.post("/blogposts", function(req, res) {
     likes: 0
   };
   blogposts = [...blogposts, newPost];
-  res.json(blogposts);
+  res.status(201).json();
 });
 
 app.get("/blogposts/:id", function(req, res) {
@@ -72,9 +72,7 @@ app.delete("/blogposts/:id", function(req, res) {
   const requestedId = parseInt(req.params.id, 10);
   blogposts = blogposts.filter(blogpost => blogpost.id !== requestedId);
 
-  res.json({
-    message: `blogpost with id ${requestedId} deleted successfully.`
-  });
+  res.json();
 });
 
 app.get("/users", function(req, res) {
@@ -88,7 +86,7 @@ app.post("/users", function(req, res) {
     age: req.body.age
   };
   users.push(newUser);
-  res.json(users);
+  res.status(201).json();
 });
 
 app.get("/users/:id", function(req, res) {
@@ -110,11 +108,9 @@ app.put("/users/:id", function(req, res) {
   res.json(updatedUser);
 });
 
-app.delete("/users/:username", function(req, res) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].username === req.params.username) {
-      users.splice(i, 1);
-    }
-  }
-  res.json(users);
+app.delete("/users/:id", function(req, res) {
+  const requestedId = parseInt(req.params.id, 10);
+  users = users.filter(user => user.id !== requestedId);
+
+  res.json();
 });

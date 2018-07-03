@@ -40,6 +40,23 @@
       "post": {
         "summary": "Create a blogpost",
         "tags": ["blogposts"],
+        "requestBody": {
+          "description": "Details of new blogpost",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "title": "A new blogpost",
+                  "body": "It's a fascinating blogpost",
+                  "author": "henry",
+                  "likes": 0,
+                  "image_url": "https://placehold.it/500"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Null response"
@@ -56,7 +73,7 @@
           "name": "id",
           "in": "path",
           "required": true,
-          "description": "The id of the blogpost to retrieve",
+          "description": "The id of a blogpost",
           "schema": {
             "type": "number"
           }
@@ -162,6 +179,20 @@
       "post": {
         "summary": "Create a user",
         "tags": ["users"],
+        "requestBody": {
+          "description": "Details of new user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "username": "william",
+                  "age": 34
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Null response"
@@ -178,7 +209,7 @@
           "name": "id",
           "in": "path",
           "required": true,
-          "description": "The id of the user to retrieve",
+          "description": "The id of a user",
           "schema": {
             "type": "number"
           }
