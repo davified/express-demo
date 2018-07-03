@@ -51,20 +51,20 @@
       }
     },
     "/blogposts/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "The id of the blogpost to retrieve",
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
       "get": {
         "summary": "Info for a specific blogpost",
         "tags": ["blogposts"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The id of the blogpost to retrieve",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Details of an individual blogpost",
@@ -88,17 +88,6 @@
       "put": {
         "summary": "Update a specific blogpost",
         "tags": ["blogposts"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The id of the blogpost to update",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Updated fields for blogpost",
           "required": true,
@@ -139,17 +128,6 @@
       "delete": {
         "summary": "Delete a specific blogpost",
         "tags": ["blogposts"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The id of the blogpost to delete",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Null response"
@@ -195,20 +173,20 @@
       }
     },
     "/users/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "The id of the user to retrieve",
+          "schema": {
+            "type": "number"
+          }
+        }
+      ],
       "get": {
         "summary": "Info for a specific user",
         "tags": ["users"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The id of the user to retrieve",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Details of an individual user",
@@ -229,17 +207,6 @@
       "put": {
         "summary": "Update a specific user",
         "tags": ["users"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The id of the user to update",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
         "requestBody": {
           "description": "Updated fields for user",
           "required": true,
@@ -274,17 +241,6 @@
       "delete": {
         "summary": "Delete a specific user",
         "tags": ["users"],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "The id of the blogpost to delete",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Null response"
