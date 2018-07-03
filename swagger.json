@@ -135,6 +135,26 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Delete a specific blogpost",
+        "tags": ["blogposts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the blogpost to delete",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Null response"
+          }
+        }
       }
     },
     "/users": {
@@ -248,6 +268,26 @@
                 }
               }
             }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a specific user",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the blogpost to delete",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Null response"
           }
         }
       }
