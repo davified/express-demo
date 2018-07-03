@@ -2,12 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const PORT = process.env.PORT || 3000;
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+
 let blogposts = require("./seedData").blogposts;
 let users = require("./seedData").users;
 
 const app = express();
 
 app.listen(PORT, function() {});
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", function(req, res) {
   res.json({

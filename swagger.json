@@ -1,0 +1,256 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Jumpstart Blogging API"
+  },
+  "servers": [
+    {
+      "url": "https://jumpstart-blogging-api.herokuapp.com"
+    }
+  ],
+  "paths": {
+    "/blogposts": {
+      "get": {
+        "summary": "List all blogposts",
+        "tags": ["blogposts"],
+        "responses": {
+          "200": {
+            "description": "An array of blog posts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "example": {
+                      "id": 5,
+                      "title": "A new blogpost",
+                      "body": "Lorem ipsum dolor sit amet.",
+                      "author": "harry",
+                      "likes": 200,
+                      "image_url": "https://placehold.it/300"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a blogpost",
+        "tags": ["blogposts"],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/blogposts/{id}": {
+      "get": {
+        "summary": "Info for a specific blogpost",
+        "tags": ["blogposts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the blogpost to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of an individual blogpost",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": 5,
+                    "title": "A new blogpost",
+                    "body": "Lorem ipsum dolor sit amet.",
+                    "author": "harry",
+                    "likes": 200,
+                    "image_url": "https://placehold.it/300"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a specific blogpost",
+        "tags": ["blogposts"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the blogpost to update",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated fields for blogpost",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "title": "An updated title",
+                  "body": "U-chebin estel anim.",
+                  "author": "henry",
+                  "likes": 20,
+                  "image_url": "https://placehold.it/500"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Details of updated blogpost",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": 5,
+                    "title": "An updated title",
+                    "body": "U-chebin estel anim.",
+                    "author": "henry",
+                    "likes": 20,
+                    "image_url": "https://placehold.it/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "List all users",
+        "tags": ["users"],
+        "responses": {
+          "200": {
+            "description": "List of all users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "example": {
+                      "id": 6,
+                      "username": "harry",
+                      "age": 439
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a user",
+        "tags": ["users"],
+        "responses": {
+          "201": {
+            "description": "Null response"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Info for a specific user",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the user to retrieve",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of an individual user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": 6,
+                    "username": "harry",
+                    "age": 439
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a specific user",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The id of the user to update",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updated fields for user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "username": "harry",
+                  "age": 439
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Details of updated user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "id": 6,
+                    "username": "harry",
+                    "age": 439
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
