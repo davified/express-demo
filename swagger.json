@@ -62,7 +62,16 @@
             "description": "Null response"
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "author and either body or title are required"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -99,6 +108,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "No blogpost with specified ID found"
           }
         }
       },
@@ -139,6 +151,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "No blogpost with specified ID found"
           }
         }
       },
@@ -146,8 +161,8 @@
         "summary": "Delete a specific blogpost",
         "tags": ["blogposts"],
         "responses": {
-          "200": {
-            "description": "Null response"
+          "204": {
+            "description": "No content"
           }
         }
       }
@@ -198,7 +213,16 @@
             "description": "Null response"
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": {
+                    "message": "username is required"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -232,6 +256,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "No user with specified ID found"
           }
         }
       },
@@ -266,6 +293,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "No user with specified ID found"
           }
         }
       },
@@ -273,8 +303,8 @@
         "summary": "Delete a specific user",
         "tags": ["users"],
         "responses": {
-          "200": {
-            "description": "Null response"
+          "204": {
+            "description": "No content"
           }
         }
       }

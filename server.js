@@ -41,15 +41,27 @@ app.get("/blogposts", function(req, res) {
 });
 
 app.post("/blogposts", function(req, res) {
+  const { body, title, author, image_url, likes = 0 } = req.body;
+
+  if (!(author && (title || body))) {
+    res.status(400).json({
+      message: "author and either body or title are required"
+    });
+
+    return;
+  }
+
   const newPost = {
     id: blogposts.length + 1,
-    body: req.body.body,
-    title: req.body.title,
-    author: req.body.author,
-    image_url: req.body.image_url,
-    likes: 0
+    body,
+    title,
+    author,
+    image_url,
+    likes
   };
+
   blogposts = [...blogposts, newPost];
+
   res.status(201).json();
 });
 
@@ -57,12 +69,23 @@ app.get("/blogposts/:id", function(req, res) {
   const id = parseInt(req.params.id, 10);
   const requestedPost = blogposts.find(blogpost => blogpost.id === id);
 
+  if (!requestedPost) {
+    res.status(404).json();
+    return;
+  }
+
   res.json(requestedPost);
 });
 
 app.put("/blogposts/:id", function(req, res) {
   const id = parseInt(req.params.id, 10);
   const requestedPost = blogposts.find(blogpost => blogpost.id === id);
+
+  if (!requestedPost) {
+    res.status(404).json();
+    return;
+  }
+
   const updatedPost = Object.assign(requestedPost, req.body);
 
   res.json(updatedPost);
@@ -72,7 +95,7 @@ app.delete("/blogposts/:id", function(req, res) {
   const requestedId = parseInt(req.params.id, 10);
   blogposts = blogposts.filter(blogpost => blogpost.id !== requestedId);
 
-  res.json();
+  res.status(204).json();
 });
 
 app.get("/users", function(req, res) {
@@ -91,18 +114,25 @@ app.post("/users", function(req, res) {
 
 app.get("/users/:id", function(req, res) {
   const id = parseInt(req.params.id, 10);
-  let requestedUser;
-  users.forEach(function(element) {
-    if (element.id === id) {
-      requestedUser = element;
-    }
-  });
+  const requestedUser = users.find(user => user.id === id);
+
+  if (!requestedUser) {
+    res.status(404).json();
+    return;
+  }
+
   res.json(requestedUser);
 });
 
 app.put("/users/:id", function(req, res) {
   const id = parseInt(req.params.id, 10);
   const requestedUser = users.find(user => user.id === id);
+
+  if (!requestedUser) {
+    res.status(404).json();
+    return;
+  }
+
   const updatedUser = Object.assign(requestedUser, req.body);
 
   res.json(updatedUser);
@@ -112,5 +142,5 @@ app.delete("/users/:id", function(req, res) {
   const requestedId = parseInt(req.params.id, 10);
   users = users.filter(user => user.id !== requestedId);
 
-  res.json();
+  res.status(204).json();
 });
