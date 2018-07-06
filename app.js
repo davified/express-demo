@@ -55,7 +55,7 @@ app.post("/blogposts", (req, res, next) => {
 
   blogposts = [...blogposts, newPost];
 
-  res.status(201).json(); // TODO: should we return the newly create blog?
+  res.status(201).json();
 });
 
 app.get("/blogposts/:id", (req, res, next) => {
@@ -79,9 +79,13 @@ app.put("/blogposts/:id", (req, res, next) => {
 
 app.delete("/blogposts/:id", (req, res, next) => {
   const requestedId = Number(req.params.id);
-  blogposts = blogposts.filter(blogpost => blogpost.id !== requestedId);
-
-  res.status(204).json(); // TODO: what to do if requested id doesn't exist?
+  blogpostToDelete = blogposts.find(blogpost => blogpost.id !== requestedId);
+  if (blogpostToDelete) {
+    blogposts = blogposts.filter(blogpost => blogpost.id !== requestedId);
+    res.status(204).json();
+  } else {
+    next();
+  }
 });
 
 app.get("/users", (req, res, next) => res.json(users));
@@ -96,7 +100,7 @@ app.post("/users", (req, res, next) => {
   };
 
   users = [...users, newUser];
-  res.status(201).json(); // TODO: should we return new user?
+  res.status(201).json();
 });
 
 app.get("/users/:id", (req, res, next) => {
@@ -126,7 +130,7 @@ app.delete("/users/:id", (req, res, next) => {
   const requestedId = Number(req.params.id);
   users = users.filter(user => user.id !== requestedId);
 
-  res.status(204).json(); // TODO: should we return a confirmation msg?
+  res.status(204).json();
 });
 
 app.use((req, res, next) => {
