@@ -16,7 +16,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/", function(req, res) {
   res.json({
-    0: "GET       /",
+    0: "GET       /api-docs",
     1: "-----------------------",
     2: "GET       /blogposts",
     3: "GET       /blogposts/:id",
